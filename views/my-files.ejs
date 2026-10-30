@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Files</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .file-card {
+            background: white;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>My Files</h1>
+
+    <% if (files.length === 0) { %>
+
+        <p>You have not uploaded any files yet.</p>
+
+    <% } else { %>
+
+        <% files.forEach(file => { %>
+
+            <div class="file-card">
+                <h3><%= file.filename %></h3>
+
+                <p>
+                    Uploaded:
+                    <%= new Date(file.createdAt).toLocaleString() %>
+                </p>
+
+                <a href="<%= file.fileUrl %>" target="_blank">
+                    View File
+                </a>
+            </div>
+
+        <% }) %>
+
+    <% } %>
+
+    <br>
+    <a href="/home">Back to Home</a>
+
+</body>
+</html>
