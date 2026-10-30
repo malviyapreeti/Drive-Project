@@ -33,7 +33,9 @@ app.use('/user', userRouter);
 app.use('/', uploadRouter);
 
 // SERVER
-app.listen(4000, '127.0.0.1', () => {
-    console.log('Server is running on http://127.0.0.1:4000');
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server is running on port ${PORT}`);
     connectToDB();
 });
