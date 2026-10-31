@@ -5,6 +5,11 @@ const router = express.Router();
 const File = require('../models/file.model');
 const authMiddleware = require('../middleware/auth.middleware');
 
+// Send visitors to the login page when they open the site root.
+router.get('/', (req, res) => {
+    return res.redirect('/user/login');
+});
+
 router.get('/home', authMiddleware, async (req, res) => {
     try {
         const files = await File.find({
