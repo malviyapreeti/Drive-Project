@@ -1,25 +1,29 @@
 # Drive Project – Cloud-Based File Storage Application
 
-A web-based file storage application that allows users to securely register, log in, upload files, and manage their personal files using cloud storage.
+A web-based file management application where users can register, log in, upload files to cloud storage, and manage their own files.
 
 ## 🚀 Project Overview
 
-Drive Project is a cloud-based file management application built using Node.js, Express.js, MongoDB, and Cloudinary.
+Drive Project is a backend-focused file storage application built with **Node.js, Express.js, MongoDB, and Cloudinary**.
 
-The application provides user authentication and file upload functionality, allowing users to store and access their files through a web interface.
+Users can create an account, authenticate, upload files, view their uploaded files, rename them, and delete them through the web interface. File information is stored in MongoDB, while uploaded files are stored in Cloudinary.
 
 ## ✨ Features
 
 - User Registration and Login
 - Password Hashing using Bcrypt
 - JWT-Based Authentication
-- Protected Routes and User Sessions
+- HTTP-Only Cookie Authentication
+- Protected Routes
 - File Upload using Multer
 - Cloud-Based File Storage using Cloudinary
+- User-Specific File Management
+- Rename Uploaded Files
+- Delete Uploaded Files
 - MongoDB Database Integration
 - Dynamic Views using EJS
-- User-Specific File Management
 - Logout Functionality
+- Root Route Redirect to Login Page
 
 ## 🛠️ Tech Stack
 
@@ -30,11 +34,12 @@ The application provides user authentication and file upload functionality, allo
 | MongoDB | Database |
 | Mongoose | Database Management |
 | Cloudinary | Cloud File Storage |
+| Multer | File Upload Handling |
 | EJS | Templating Engine |
 | JavaScript | Application Logic |
-| Multer | File Upload Handling |
 | Bcrypt | Password Hashing |
 | JWT | Authentication |
+| Cookie Parser | Cookie Handling |
 | Git & GitHub | Version Control |
 
 ## 📂 Project Structure
@@ -43,7 +48,8 @@ The application provides user authentication and file upload functionality, allo
 Drive-Project/
 │
 ├── config/
-│   └── db.js
+│   ├── db.js
+│   └── cloudinary.js
 │
 ├── middleware/
 │   └── auth.middleware.js
@@ -60,7 +66,8 @@ Drive-Project/
 ├── views/
 │   ├── login.ejs
 │   ├── register.ejs
-│   └── home.ejs
+│   ├── home.ejs
+│   └── my-files.ejs
 │
 ├── app.js
 ├── package.json
@@ -90,7 +97,7 @@ npm install
 
 ### 4. Configure Environment Variables
 
-Create a `.env` file in the root directory and configure the following variables according to your setup:
+Create a `.env` file in the root directory and configure the following variables:
 
 ```env
 PORT=4000
@@ -101,7 +108,9 @@ CLOUDINARY_API_KEY=your_cloudinary_api_key
 CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 ```
 
-**Note:** Never share or upload your `.env` file or secret credentials to GitHub.
+You need a MongoDB connection string and Cloudinary account credentials.
+
+**Important:** Never share or upload your `.env` file or secret credentials to GitHub.
 
 ### 5. Start the Application
 
@@ -115,12 +124,14 @@ The application will run on:
 http://localhost:4000
 ```
 
-## 🔐 Security
+## 🔐 Authentication & File Management
 
-- Passwords are hashed before storing them in the database.
+- Passwords are hashed using Bcrypt before being stored.
 - JWT is used for user authentication.
-- Protected routes restrict access to authenticated users.
-- Environment variables are used to manage sensitive credentials.
+- Authentication tokens are stored in HTTP-only cookies.
+- Protected routes require valid authentication.
+- Files are associated with the user who uploaded them.
+- Users can view, rename, and delete their own files.
 
 ## 👩‍💻 Developer
 
@@ -131,4 +142,4 @@ http://localhost:4000
 
 ---
 
-*Built as a practical project to explore backend development, authentication, database integration, and cloud-based file storage.*
+*Built as a practical project to learn backend development, authentication, database integration, and cloud-based file storage.*
